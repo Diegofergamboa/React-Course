@@ -1,6 +1,6 @@
 import React from "react";
 import TodoItem from './TodoItem';
-// Items to Do.
+import './TodoList.css';
 
 
 function TodoList(props) {
