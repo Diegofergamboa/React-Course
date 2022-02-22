@@ -8,7 +8,7 @@ import './App.css';
 
 
 const todos = [
-  {text: 'Cook the dinner', completed: false},
+  {text: 'Cook the dinner', completed: true},
   {text: 'Course of React', completed: false},
   {text: 'Clean the filter', completed: false},
 ];
@@ -21,7 +21,7 @@ function App() {
       <TodoSearch />
       <TodoList >
         {todos.map(todo => 
-            (<TodoItem key={todo.text} text={todo.text}  />))}
+            (<TodoItem key={todo.text} text={todo.text} completed={todo.completed} />))}
       </TodoList >
       <CreateTodoButton />
     </React.Fragment>
