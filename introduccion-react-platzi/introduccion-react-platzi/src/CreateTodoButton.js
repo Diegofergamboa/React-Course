@@ -2,10 +2,14 @@ import React from "react";
 import './CreateTodoButton.css'
 
 function CreateTodoButton() {
+    const onClickButton = (msg) => {
+        alert(`Modal opened with this message: ${msg}`)
+    };
+    
     return (
         <button 
             className="CreateTodoButton"
-            onClick={() => console.log('Click on create button')}
+            onClick={() => onClickButton('MESSAGE')}
             >
             +
         </button>
