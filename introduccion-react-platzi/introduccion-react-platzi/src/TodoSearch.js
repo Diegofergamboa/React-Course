@@ -2,28 +2,12 @@ import React, { Component } from "react";
 import './TodoSearch.css'
 
 
-// class Componente extends React.Component {
-//     // Se realizan construcciones de los componentes
-//     constructor() {
-//         this.state = {
-//             variable: 'variable'
-//         };
-//     }
-
-//     // Aqui llamamos la renderización.
-//     render() {
-//         return (
-//             <div> {this.state.variable}</div>
-//         );
-//     };
-// };
-
-function TodoSearch( searchValue , setSearchValue ) {
+function TodoSearch( {searchValue , setSearchValue} ) {
     
     
     const onSearchValueChange = (event) => {
-        console.log(event.target.value);
-        setSearchValue(event.target.value); // Aqui estoy cambiando por el value dle input
+        console.log(event.target.value)
+        return setSearchValue(event.target.value); // Aqui estoy cambiando por el value dle input
     };
 
 
@@ -34,7 +18,7 @@ function TodoSearch( searchValue , setSearchValue ) {
             value = {searchValue} // De primero es el string vacio
             onChange={onSearchValueChange} // Para ejecutar el cambio del valor del estado 
             />,
-    ];
+    ]
 }
 
 export { TodoSearch };

@@ -9,7 +9,7 @@ import './App.css';
 
 const defaultTodos = [
   {text: 'Cook the dinner', completed: true},
-  {text: 'Course of React', completed: false},
+  {text: 'Course of React', completed: true},
   {text: 'Clean the filter', completed: false},
 ];
 
@@ -18,12 +18,14 @@ const defaultTodos = [
 function App() {
 
   const [todos, setTodos] = React.useState(defaultTodos);
+  
   const [searchValue, setSearchValue] = React.useState('');
 
   const completedTodos = todos.filter(todo => !! todo.completed).length; // Doble signo de asignación dice si es verdadero
   const totalTodos = todos.length;
 
   let searchedTodos = [];
+
   if (!searchValue.length >= 1){
     searchedTodos = todos;
   }  else {
@@ -31,7 +33,7 @@ function App() {
       const todoText = todo.text.toLowerCase();
       const searchText = searchValue.toLowerCase();
       return todoText.includes(searchText);
-    });
+    }); 
   }
 
   return (
@@ -48,9 +50,9 @@ function App() {
         {searchedTodos.map(todo => 
             (
             <TodoItem
-                key={todo.text} 
-                text={todo.text} 
-                completed={todo.completed} 
+                key={todo.text}
+                text={todo.text}
+                completed={todo.completed}
             />
             ))};
       </TodoList >
