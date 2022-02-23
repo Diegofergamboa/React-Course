@@ -1,14 +1,25 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
+    // Definir las propiedades.
+    <App/>,
   document.getElementById('root')
 );
+
+// Definición de propiedades que se le pueden dar a los modulos.
+
+App.PropTypes = {
+  txt: React.PropTypes.string, 
+  n: React.PropTypes.number.isRequired,
+}
+
+App.defaultProps = {
+  txt: "This is the default text",
+}
+
+
+
 
 
