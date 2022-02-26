@@ -12,19 +12,28 @@ class App extends React.Component{
     }
   }
 
-  setProp( e ) {
+  update( e ) {
     this.setState({ txt: e.target.value })
   }
 
   render() {
     return (
       <div>
-        <input type="text" placeholder="Put here your new state to the text"  onChange={this.setProp.bind(this)}/>
+        {/* Setting de componentes */}
+        <Widget update={this.update.bind(this)}/>
+        <Widget update={this.update.bind(this)}/>
+        <Widget update={this.update.bind(this)}/>
+        <Widget update={this.update.bind(this)}/>
         <h1>{this.state.txt}</h1>
       </div>
     );
   }
 }
+
+
+// Creando un componente
+const Widget = (props) => 
+  <input type="text" placeholder="Put here your new state value" onChange={props.update}/>
 
 
 export default App;
