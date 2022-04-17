@@ -37,3 +37,8 @@ const Widget = (props) =>
 
 
 export default App;
+
+
+if (Number > 100) {
+  console.log(default);
+}
