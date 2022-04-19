@@ -8,7 +8,7 @@ import { TodoItem } from './TodoItem';
 
 const todos = [
   { text: 'Cortar cebolla', completed: false } ,
-  { text: 'Tomar curso', completed: false } ,
+  { text: 'Tomar curso', completed: true } ,
   { text: 'Renderizar', completed: false } ,
 ];
 
