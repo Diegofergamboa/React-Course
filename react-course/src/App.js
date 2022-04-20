@@ -23,13 +23,22 @@ function App() {
   //Estructura del Search value
   const [ todos, setTodos ] = React.useState(defaultTodos);
   const [ searchValue, setSearchValue ] = React.useState('');
-  const todoSearched = 
+  
 
   // Estructura del todo Counter
   const completed = defaultTodos.filter(todo => !!todo.completed).length;
   const totalTodo = defaultTodos.length;
 
-  
+  let searchedTodos = [];
+  if (!searchValue.length >= 1) {
+        searchedTodos = todos;
+  } else {
+        searchedTodos = defaultTodos.filter(todo => {
+          const todoText = todo.text.toLowerCase();
+          const searchText = searchValue.toLowerCase();
+          return todoText.includes(searchText);
+        });
+  } 
 
   return (
     <React.Fragment>
@@ -45,7 +54,7 @@ function App() {
       />
       
       <TodoList>
-        {todos.map(todo => (
+        {searchedTodos.map(todo => (
           <TodoItem 
             key={todo.text}
             text={todo.text}

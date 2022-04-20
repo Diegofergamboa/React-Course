@@ -13,7 +13,9 @@ function TodoSearch({ searchValue, setSearchValue  }) {
       className="TodoSearch"
       placeholder="Cebolla"
       value = {searchValue}
-      onChange={onSearchValueChange}
+      onChange={
+                  onSearchValueChange
+                }
     />
   );
 }
