@@ -1,16 +1,16 @@
 import React from 'react';
-import { TodoCounter } from './TodoCounter';
-import { TodoSearch } from './TodoSearch';
-import { TodoList } from './TodoList';
-import { CreateTodoButton } from './CreateTodoButton';
-import { TodoItem } from './TodoItem';
+import { TodoCounter } from '../TodoCounter/index.';
+import { TodoSearch } from '../TodoSearch';
+import { TodoList } from '../TodoList';
+import { CreateTodoButton } from '../CreateTodoButton';
+import { TodoItem } from '../TodoItem';
 // import './App.css';
 
 const defaultTodos = [
   { text: 'Cortar cebolla', completed: false } ,
-  { text: 'Tomar curso', completed: true } ,
+  { text: 'Tomar curso', completed: false } ,
   { text: 'Renderizar', completed: false } ,
-  { text: 'Comer', completed: true } ,
+  { text: 'Comer', completed: false } ,
 ];
 
 
@@ -50,8 +50,8 @@ function App() {
   const deleteTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
     let newTodos = [...todos];
-    newTodos.splice(todoIndex, 1)
-    setTodos(newTodos)
+    newTodos.splice(todoIndex, 1);
+    setTodos(newTodos);
   }
 
   return (
