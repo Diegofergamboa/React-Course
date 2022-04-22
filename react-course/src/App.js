@@ -21,11 +21,11 @@ function App() {
   // useState se usa para principalmente cambiar los valores.
 
   //Estructura del Search value
-  const [ todos, setTodos ] = React.useState(todos);
+  const [ todos, setTodos ] = React.useState(defaultTodos);
   const [ searchValue, setSearchValue ] = React.useState('');
   
 
-  // Estructura del todo Counter
+  // Estructura del todo Counter 
   const completed = todos.filter(todo => !!todo.completed).length;
   const totalTodo = todos.length;
 
@@ -39,21 +39,27 @@ function App() {
           return todoText.includes(searchText);
         });
   }
-  
+
   const completeTodo = (text) => {
-    // Encontrar posición dentro del array para cambiar lo que se deba cambiar
     const todoIndex = todos.findIndex(todo => todo.text === text);
     const newTodos = [...todos];
     newTodos[todoIndex].completed = true;
-    setTodos(newTodos);
+    setTodos(newTodos);  
   };
+  
+  const deleteTodo = (text) => {
+    const todoIndex = todos.findIndex(todo => todo.text === text);
+    let newTodos = [...todos];
+    newTodos.splice(todoIndex, 1)
+    setTodos(newTodos)
+  }
 
   return (
     <React.Fragment>
 
       <TodoCounter
         total={totalTodo}
-        completed={completed}
+        completed={completed} 
       />
 
       <TodoSearch 
@@ -67,7 +73,8 @@ function App() {
             key={todo.text}
             text={todo.text}
             completed={todo.completed}
-            onComplete={() => completeTodo(todo)}
+            onComplete={() => completeTodo(todo.text)}
+            onDelete={() => deleteTodo(todo.text)}
           />
         ))}
       </TodoList>
