@@ -31,11 +31,11 @@
     /* background-color: #CCC; */
 }
 
-.Icon .Icon-check {
+.Icon-check {
     position: absolute;
-    left: 12px;
+    left: 12px; 
 }
-.Icon .Icon-check--active {
+.Icon-check--active {
     color: #4caf50;
 }
 
