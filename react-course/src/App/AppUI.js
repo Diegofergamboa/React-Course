@@ -19,8 +19,8 @@ function AppUI({
     <React.Fragment>
 
         <TodoCounter
-            total={totalTodo}
-            completed={completed} 
+            total={totalTodos}
+            completed={completedTodos}
         />
 
         <TodoSearch 

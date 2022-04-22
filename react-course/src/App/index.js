@@ -51,7 +51,7 @@ function App() {
 
   return (
     <AppUI 
-      totalTodos={totalTodo}
+      totalTodos={totalTodos}
       completedTodos={completedTodos}
       searchValue={searchValue}
       setSearchValue={setSearchValue}
