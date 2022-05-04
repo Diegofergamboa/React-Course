@@ -8,30 +8,39 @@ import { AppUI } from './AppUI';
 //   { text: 'Comer', completed: false } ,
 // ];
 
-
-function App() {
-
-  // Creación de estados
-  // Hay que llamarlos dentro de los componentes del App
-  // useState se usa para principalmente cambiar los valores.
+function useLocalStorage(itemName, initialValue) {
 
   // Configuración del localStorage
-  const localStorageTodos = localStorage.getItem('TODOS_V1');
-  let parsedTodos;
+  const LocalStorageItem = localStorage.getItem(itemName);
+  let parsedItem;
 
-  if (!localStorageTodos) {
+  if (!LocalStorageItem) {
     // Valor por defecto porque es la primera vez que loguea el User
-    localStorage.setItem('TODOS_V1', JSON.stringify([]));
-    parsedTodos = [];
+    localStorage.setItem(itemName, JSON.stringify(initialValue));
+    parsedItem = initialValue;
   } else {
     // Si ya se han creado, se va a parsear la información del usuario dentro de un objeto de HS
-    parsedTodos = JSON.parse(localStorageTodos);
+    parsedItem = JSON.parse(LocalStorageItem);
   }
 
-  //Estructura del Search value
-  const [ todos, setTodos ] = React.useState(parsedTodos);
-  const [ searchValue, setSearchValue ] = React.useState('');
+  const [ item, setItem ] = React.useState(parsedItem);
   
+  const saveItem = (newItem) => {
+    const stringifiedItem = JSON.stringify(newItem);
+    localStorage.setItem(itemName, stringifiedItem);
+    setItem(newItem);
+  };
+
+  return [
+    item,
+    saveItem,
+  ];
+}
+
+function App() {
+  //Estructura del Search value
+  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const [ searchValue, setSearchValue ] = React.useState('');
 
   // Estructura del todo Counter 
   const completed = todos.filter(todo => !!todo.completed).length;
@@ -47,12 +56,6 @@ function App() {
           return todoText.includes(searchText);
         });
   }
-
-  const saveTodos = (newTodos) => {
-    const stringifiedTodos = JSON.stringify(newTodos);
-    localStorage.setItem('TODOS_V1', stringifiedTodos);
-    setTodos(newTodos);
-  };
 
   const completeTodo = (text) => {
     const todoIndex = todos.findIndex(todo => todo.text === text);
