@@ -9,38 +9,61 @@ import { AppUI } from './AppUI';
 // ];
 
 function useLocalStorage(itemName, initialValue) {
+  const [ loading, setLoading ] = React.useState(true);
+  const [ error, setError ] = React.useState(false);
+  const [ item, setItem ] = React.useState(initialValue);
 
-  // Configuración del localStorage
-  const LocalStorageItem = localStorage.getItem(itemName);
-  let parsedItem;
+  React.useEffect(() => {
+    setTimeout(() => {
+        try {          
+          // Configuración del localStorage
+          const LocalStorageItem = localStorage.getItem(itemName);
+          let parsedItem;
   
+          if (!LocalStorageItem) {
+            // Valor por defecto porque es la primera vez que loguea el User
+            localStorage.setItem(itemName, JSON.stringify(initialValue));
+            parsedItem = initialValue;
+          } else {
+            // Si ya se han creado, se va a parsear la información del usuario dentro de un objeto de HS
+            parsedItem = JSON.parse(LocalStorageItem);
+          }
+          setItem(parsedItem);
+          setLoading(false);
+        } catch (error) {
+          setError(error);
+        }
+    }, 1000)
+  });
 
-  if (!LocalStorageItem) {
-    // Valor por defecto porque es la primera vez que loguea el User
-    localStorage.setItem(itemName, JSON.stringify(initialValue));
-    parsedItem = initialValue;
-  } else {
-    // Si ya se han creado, se va a parsear la información del usuario dentro de un objeto de HS
-    parsedItem = JSON.parse(LocalStorageItem);
-  }
 
-  const [ item, setItem ] = React.useState(parsedItem);
-  
+
   const saveItem = (newItem) => {
-    const stringifiedItem = JSON.stringify(newItem);
-    localStorage.setItem(itemName, stringifiedItem);
-    setItem(newItem);
+    try {
+      const stringifiedItem = JSON.stringify(newItem);
+      localStorage.setItem(itemName, stringifiedItem);
+      setItem(newItem);
+    } catch (error) {
+      setError(error);
+    }
   };
 
-  return [
+  return {
     item,
     saveItem,
-  ];
+    loading,
+    error,
+  };
 }
 
 function App() {
   //Estructura del Search value
-  const [todos, saveTodos] = useLocalStorage('TODOS_V1', []);
+  const {
+    item: todos, 
+    saveItem: saveTodos,
+    loading: loading,
+    error: error,
+  } = useLocalStorage('TODOS_V1', []);
   const [ searchValue, setSearchValue ] = React.useState('');
 
   // Estructura del todo Counter 
@@ -73,8 +96,11 @@ function App() {
   }
 
 
+
   return (
-    <AppUI 
+    <AppUI
+      loading={loading}
+      error={error}
       totalTodos={totalTodo}
       completeTodos={completed}
       searchValue={searchValue}
