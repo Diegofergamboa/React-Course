@@ -17,7 +17,7 @@ function TodoProvider (props) {
     const [ searchValue, setSearchValue ] = React.useState('');
 
     // Estructura del todo Counter 
-    const completed = todos.filter(todo => !!todo.completed).length;
+    const completedTodos = todos.filter(todo => !!todo.completed).length;
     const totalTodo = todos.length;
 
     let searchedTodos = [];
@@ -49,7 +49,7 @@ function TodoProvider (props) {
             loading ,
             error ,
             totalTodo ,
-            completeTodo ,
+            completedTodos ,
             searchValue ,
             setSearchValue ,
             searchedTodos ,
