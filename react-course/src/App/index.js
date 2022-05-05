@@ -13,6 +13,7 @@ function useLocalStorage(itemName, initialValue) {
   // Configuración del localStorage
   const LocalStorageItem = localStorage.getItem(itemName);
   let parsedItem;
+  
 
   if (!LocalStorageItem) {
     // Valor por defecto porque es la primera vez que loguea el User
@@ -70,9 +71,6 @@ function App() {
     newTodos.splice(todoIndex, 1);
     saveTodos(newTodos);
   }
-
-
-
 
 
   return (
