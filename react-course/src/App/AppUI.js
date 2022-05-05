@@ -5,6 +5,7 @@ import { TodoSearch } from '../TodoSearch';
 import { TodoList } from '../TodoList';
 import { CreateTodoButton } from '../CreateTodoButton';
 import { TodoItem } from '../TodoItem';
+import { Modal } from '../Modal';
 
 
 function AppUI() {
@@ -39,6 +40,10 @@ function AppUI() {
         />
         ))}
         </TodoList>
+
+        <Modal>
+            <p>Portal</p>
+        </Modal>
 
         <CreateTodoButton />
 
