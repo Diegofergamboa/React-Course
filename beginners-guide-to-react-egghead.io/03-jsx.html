@@ -2,10 +2,15 @@
   <div id="root"></div>
   <script src="https://unpkg.com/react@16.12.0/umd/react.development.js"></script>
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
+  <!-- Babel is used here to compile the JXS code in HTML and javascript code. -->
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
+    // We´re taking here the code first principal element.
     const rootElement = document.getElementById('root')
+    // This is JSX because is and embed of javascript into HTML.
+    // We´re here trygin to create our application with the two principal tools that are an h1 into a div.
     const element = <div className="container"><h1>Hello world</h1></div>
+    // Here we´re just rooting out element with the render tool of react.
     ReactDOM.render(element , rootElement)
   </script>
 </body>
