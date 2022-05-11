@@ -5,9 +5,19 @@
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
     const rootElement = document.getElementById('root');
-    const children = 'Hello World!';
-    const className = 'Container'
-    const Element = <div className={className}>{children}</div>;
+    // Another way to copy into the element is closing the elements methos into the props items. For example
+    const myChildren = 'Hello World!';
+    const className = 'Container';
+
+    const props = {myChildren, className};
+
+    // We can add into an Element the method of children, using the spread method of ECMAScript6
+    
+    const Element = <div {...props}/>;
+
+
+
+
     ReactDOM.render(Element, rootElement);
   </script>
 </body>
