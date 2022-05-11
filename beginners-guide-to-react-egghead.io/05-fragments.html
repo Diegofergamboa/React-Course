@@ -4,11 +4,47 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
-    const element = (
-      <>
-        <span>Hello</span> <span>World</span>
-      </>
-    )
-    ReactDOM.render(element, document.getElementById('root'))
+    // We have here a normal syntaxis of JSX, but, we cannot try to render into a single prop different kind of elements, as the example of have two or three span or divs.
+    // const children = 'This is the children prop with a single page';
+    // const className = 'app-root';
+    // const props = {children, className};
+    // const element = <div {...props}/>;
+
+
+    // As i say before, we can check that we cannot render two elements into a single render extension from React.
+    // const firstElement = React.createElement('span', null, 'First Element');
+    // const firstElement = React.createElement('span', null, 'Second Element');
+    // ReactDOM.render(firstElement, firstElement, document.getElementById('root'))
+
+    // For this reason the React team had created the ReactFragment.
+    // On this tool, we can render a lot of different tags into out context.
+
+
+    // Using the create react element API directly
+
+    // const aloneVariable = 'alone Variable';
+
+    // const element = React.createElement(
+    //   React.Fragment,
+    //   null,
+    //   'hello this is one prop',
+    //   'this is a second prop',
+    //   '',
+    //   aloneVariable,
+    // );
+
+
+    // ReactDOM.render(element, document.getElementById('root'));
+
+    //Using JSX
+    // We can too just put an empty tag to asimilate the fragment react tool.
+
+    const element = <React.Fragment>
+      <span>First Span <br/></span>
+      <span>Second Span <br/></span>
+      <span>Third Span </span>
+      </React.Fragment>
+
+    ReactDOM.render(element, document.getElementById('root'));
   </script>
 </body>
