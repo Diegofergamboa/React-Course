@@ -4,12 +4,14 @@
   <script src="https://unpkg.com/react-dom@16.12.0/umd/react-dom.development.js"></script>
   <script src="https://unpkg.com/@babel/standalone@7.8.3/babel.js"></script>
   <script type="text/babel">
+    // let`s study of the information of how the rerender works.
     const rootElement = document.getElementById('root')
-
+    // we have here a function that works in a way in that we give an update every single milllisecond about the time, with using a function and a call to an API from JS.
     function tick() {
       const time = new Date().toLocaleTimeString()
       const element = (
         <>
+        // Here, we can see that the re render works into the especific element but if we do this same implementation with just an JS emdeb, as using an HTML.innerHTML = the result of the time function, we are uptading the entire div, no just the input item.
           <input value={time} />
           <input value={time} />
         </>
